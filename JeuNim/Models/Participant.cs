@@ -7,7 +7,7 @@ public partial class Participant
 {
     public int IdParticipant { get; set; }
 
-    public bool AGagne { get; set; }
+    public bool Aperdu { get; set; }
 
     public bool ACommence { get; set; }
 
