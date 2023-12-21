@@ -16,11 +16,11 @@ namespace JeuNim
 {
     public partial class FrmAccueil : Form
     {
-        Joueur utilisateurConnecte;
+        Joueur joueurConnecte;
         public FrmAccueil(Joueur pJoueurConnecte)
         {
             InitializeComponent();
-            utilisateurConnecte = pJoueurConnecte;
+            joueurConnecte = pJoueurConnecte;
         }
 
         private void btnCreer_Click(object sender, EventArgs e)
@@ -35,7 +35,8 @@ namespace JeuNim
                         NbBaton = GenerateRandome(),
                         EstCommence = false,
                         EstTermine = false,
-                        DatePartie = DateTime.Now,
+                        EstPrive = checkPrivate.Checked,
+                        DatePartie = DateTime.Now
                     };
                     nesContext.Parties.Add(partie);
                     nesContext.SaveChanges();
@@ -45,7 +46,7 @@ namespace JeuNim
                         Aperdu = false,
                         ACommence = GenerateAleat(),
                         IdPartie = partie.IdPartie,
-                        IdJoueur = utilisateurConnecte.IdJoueur,
+                        IdJoueur = joueurConnecte.IdJoueur,
                     };
                     nesContext.Participants.Add(participant);
                     nesContext.SaveChanges();
@@ -148,7 +149,7 @@ namespace JeuNim
                         Aperdu = false,
                         ACommence = commence,
                         IdPartie = partie.IdPartie,
-                        IdJoueur = utilisateurConnecte.IdJoueur,
+                        IdJoueur = joueurConnecte.IdJoueur,
                     };
                     context.Add(participant);
                     context.SaveChanges();

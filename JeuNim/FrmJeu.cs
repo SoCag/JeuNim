@@ -41,7 +41,6 @@ namespace JeuNim
                 {
                     // On récupère l'adversaire
                     participantAdversaire = context.Participants.Where(p => p.IdPartie == partieEnCours.IdPartie && p.IdParticipant != participantConnecte.IdParticipant).Single();
-                    labelNomAdversaire.Text = participantAdversaire.IdJoueurNavigation.Login;
 
                     if (participantAdversaire != null)
                     {

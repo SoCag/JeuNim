@@ -32,15 +32,17 @@
             btnJoin = new Button();
             txtNumero = new TextBox();
             label1 = new Label();
+            checkPrivate = new CheckBox();
             SuspendLayout();
             // 
             // btnCreer
             // 
             btnCreer.BackColor = Color.FromArgb(128, 64, 0);
             btnCreer.ForeColor = Color.White;
-            btnCreer.Location = new Point(264, 96);
+            btnCreer.Location = new Point(231, 72);
+            btnCreer.Margin = new Padding(3, 2, 3, 2);
             btnCreer.Name = "btnCreer";
-            btnCreer.Size = new Size(266, 39);
+            btnCreer.Size = new Size(233, 29);
             btnCreer.TabIndex = 0;
             btnCreer.Text = "Créer une partie";
             btnCreer.UseVisualStyleBackColor = false;
@@ -50,9 +52,10 @@
             // 
             btnJoin.BackColor = Color.FromArgb(128, 64, 0);
             btnJoin.ForeColor = SystemColors.ButtonFace;
-            btnJoin.Location = new Point(264, 158);
+            btnJoin.Location = new Point(231, 160);
+            btnJoin.Margin = new Padding(3, 2, 3, 2);
             btnJoin.Name = "btnJoin";
-            btnJoin.Size = new Size(266, 43);
+            btnJoin.Size = new Size(233, 32);
             btnJoin.TabIndex = 1;
             btnJoin.Text = "Rejoindre une partie";
             btnJoin.UseVisualStyleBackColor = false;
@@ -60,31 +63,44 @@
             // 
             // txtNumero
             // 
-            txtNumero.Location = new Point(47, 241);
+            txtNumero.Location = new Point(294, 133);
+            txtNumero.Margin = new Padding(3, 2, 3, 2);
             txtNumero.Name = "txtNumero";
-            txtNumero.Size = new Size(136, 27);
+            txtNumero.Size = new Size(170, 23);
             txtNumero.TabIndex = 2;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Location = new Point(73, 218);
+            label1.Location = new Point(231, 136);
             label1.Name = "label1";
-            label1.Size = new Size(70, 20);
+            label1.Size = new Size(57, 15);
             label1.TabIndex = 3;
             label1.Text = "Numéro :";
             // 
+            // checkPrivate
+            // 
+            checkPrivate.AutoSize = true;
+            checkPrivate.Location = new Point(381, 48);
+            checkPrivate.Name = "checkPrivate";
+            checkPrivate.Size = new Size(58, 19);
+            checkPrivate.TabIndex = 4;
+            checkPrivate.Text = "Privée";
+            checkPrivate.UseVisualStyleBackColor = true;
+            // 
             // FrmAccueil
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.Jeu_de_nim_2;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(700, 338);
+            Controls.Add(checkPrivate);
             Controls.Add(label1);
             Controls.Add(txtNumero);
             Controls.Add(btnJoin);
             Controls.Add(btnCreer);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "FrmAccueil";
             Text = "Form1";
             ResumeLayout(false);
@@ -97,5 +113,6 @@
         private Button btnJoin;
         private TextBox txtNumero;
         private Label label1;
+        private CheckBox checkPrivate;
     }
 }
