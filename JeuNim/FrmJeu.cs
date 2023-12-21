@@ -40,10 +40,13 @@ namespace JeuNim
                 using (NesContext context = new NesContext())
                 {
                     // On récupère l'adversaire
-                    participantAdversaire = context.Participants.Where(p => p.IdPartie == partieEnCours.IdPartie && p.IdParticipant != participantConnecte.IdParticipant).Single();
+                    List<Participant> listParticipantAdversaire = context.Participants.Where(p => p.IdPartie == partieEnCours.IdPartie && p.IdParticipant != participantConnecte.IdParticipant).ToList();
 
-                    if (participantAdversaire != null)
+                    if (listParticipantAdversaire.Count != 0)
                     {
+                        // Je récupère le participant adversaire
+                        participantAdversaire = context.Participants.Where(p => p.IdPartie == partieEnCours.IdPartie && p.IdParticipant != participantConnecte.IdParticipant).Single();
+
                         // On empêche le participant connecté de quitter
                         buttonQuitter.Enabled = false;
 
