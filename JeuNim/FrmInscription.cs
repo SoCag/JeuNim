@@ -191,7 +191,5 @@ namespace JeuNim
             // Masquer à nouveau le texte lorsque la souris quitte l'icône
             TxtConfirmationMDP.PasswordChar = '*';
         }
-
-   
     }
 }

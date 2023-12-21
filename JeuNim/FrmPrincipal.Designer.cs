@@ -57,9 +57,9 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(53, 105);
+            pictureBox1.Location = new Point(414, 110);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(42, 36);
+            pictureBox1.Size = new Size(48, 34);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
@@ -68,10 +68,11 @@
             // LabelConnexion
             // 
             LabelConnexion.AutoSize = true;
-            LabelConnexion.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            LabelConnexion.Location = new Point(171, 32);
+            LabelConnexion.BackColor = Color.Transparent;
+            LabelConnexion.Font = new Font("Showcard Gothic", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            LabelConnexion.Location = new Point(552, 72);
             LabelConnexion.Name = "LabelConnexion";
-            LabelConnexion.Size = new Size(94, 23);
+            LabelConnexion.Size = new Size(94, 18);
             LabelConnexion.TabIndex = 2;
             LabelConnexion.Text = "Connexion";
             LabelConnexion.Click += label2_Click;
@@ -79,7 +80,7 @@
             // panel2
             // 
             panel2.Controls.Add(panel3);
-            panel2.Location = new Point(70, 247);
+            panel2.Location = new Point(430, 224);
             panel2.Name = "panel2";
             panel2.Size = new Size(329, 3);
             panel2.TabIndex = 4;
@@ -93,7 +94,7 @@
             // 
             // TxtEmail
             // 
-            TxtEmail.Location = new Point(101, 105);
+            TxtEmail.Location = new Point(468, 110);
             TxtEmail.Multiline = true;
             TxtEmail.Name = "TxtEmail";
             TxtEmail.PlaceholderText = "Email...";
@@ -102,7 +103,7 @@
             // 
             // TxtMDP
             // 
-            TxtMDP.Location = new Point(101, 182);
+            TxtMDP.Location = new Point(468, 172);
             TxtMDP.Multiline = true;
             TxtMDP.Name = "TxtMDP";
             TxtMDP.Size = new Size(264, 34);
@@ -112,37 +113,41 @@
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(53, 182);
+            pictureBox2.Location = new Point(414, 172);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(42, 34);
+            pictureBox2.Size = new Size(48, 34);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 7;
             pictureBox2.TabStop = false;
             // 
             // BtnConnexion
             // 
-            BtnConnexion.Location = new Point(101, 290);
+            BtnConnexion.BackColor = Color.FromArgb(128, 64, 0);
+            BtnConnexion.ForeColor = Color.White;
+            BtnConnexion.Location = new Point(488, 300);
             BtnConnexion.Name = "BtnConnexion";
             BtnConnexion.Size = new Size(226, 35);
             BtnConnexion.TabIndex = 8;
             BtnConnexion.Text = "Se Connecter";
-            BtnConnexion.UseVisualStyleBackColor = true;
+            BtnConnexion.UseVisualStyleBackColor = false;
             BtnConnexion.Click += BtnConnexion_Click;
             // 
             // BtnInscription
             // 
-            BtnInscription.Location = new Point(101, 347);
+            BtnInscription.BackColor = Color.FromArgb(128, 64, 0);
+            BtnInscription.ForeColor = Color.White;
+            BtnInscription.Location = new Point(488, 353);
             BtnInscription.Name = "BtnInscription";
             BtnInscription.Size = new Size(226, 35);
             BtnInscription.TabIndex = 9;
             BtnInscription.Text = "S'inscrire";
-            BtnInscription.UseVisualStyleBackColor = true;
+            BtnInscription.UseVisualStyleBackColor = false;
             BtnInscription.Click += button1_Click;
             // 
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(368, 185);
+            pictureBox3.Location = new Point(739, 177);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(28, 24);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -155,7 +160,8 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(437, 489);
+            BackgroundImage = Properties.Resources.Jeu_de_nim_2;
+            ClientSize = new Size(1159, 609);
             Controls.Add(pictureBox3);
             Controls.Add(BtnInscription);
             Controls.Add(BtnConnexion);
