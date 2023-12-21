@@ -14,6 +14,7 @@ namespace JeuNim
 {
     public partial class FrmJeu : Form
     {
+        bool rafraichirVue = true;
         Partie partieEnCours;
         Joueur joueurConnecte;
         Participant participantConnecte;
@@ -33,7 +34,10 @@ namespace JeuNim
 
         private void timerRefreshDonnee_Tick(object sender, EventArgs e)
         {
-            RafraichirDonnees();
+            if(rafraichirVue)
+            {
+                RafraichirDonnees();
+            }
         }
 
         private void RafraichirDonnees()
@@ -74,11 +78,12 @@ namespace JeuNim
                         // S'il ne reste qu'un bâton, le joueur qui a joué le dernier coup a gagné
                         if (nbBatonsRestant == 1)
                         {
+                            rafraichirVue = false;
                             partieEnCours.EstTermine = true;
                             context.SaveChanges();
 
                             // On regarde si le dernier coup a été réalisé par le joueur connecté
-                            if (participantConnecte.IdParticipant != listCoups.Last().IdParticipant)
+                            if (participantConnecte.IdParticipant == listCoups.Last().IdParticipant)
                             {
                                 // Alors je lui indique qu'il a gagné, et je ferme la partie quand il appuye sur OK
                                 DialogResult resultat = MessageBox.Show("Vous avez gagné !!!", "Bien joué !", MessageBoxButtons.OK);
@@ -115,6 +120,7 @@ namespace JeuNim
                             // Si l'adversaire a perdu alors qu'il y a encore des batons c'est qu'il a abandonné, donc l'utilisateur connecté a gagné
                             if (participantAdversaire.Aperdu)
                             {
+                                rafraichirVue = false;
                                 // Alors je lui indique qu'il a gagné, et je ferme la partie quand il appuye sur OK
                                 DialogResult resultat = MessageBox.Show("Votre adversaire a abandonné...", "Trop fort ! ;)", MessageBoxButtons.OK);
 
@@ -184,8 +190,9 @@ namespace JeuNim
 
                     Coup coupJoue = new Coup
                     {
-                        NbBaton = (int)numericBatonARetirer.Value,
-                        Ordre = ordre
+                        NbBaton = Convert.ToInt32(numericBatonARetirer.Value),
+                        Ordre = ordre,
+                        IdParticipant = participantConnecte.IdParticipant
                     };
                     context.Coups.Add(coupJoue);
                     context.SaveChanges();
@@ -237,8 +244,8 @@ namespace JeuNim
             {
                 using (NesContext context = new NesContext())
                 {
-                    participantConnecte.Aperdu = true;
-                    partieEnCours.EstTermine = true;
+                    context.Parties.Remove(partieEnCours);
+                    context.Participants.Remove(participantConnecte);
                     context.SaveChanges();
                 }
 

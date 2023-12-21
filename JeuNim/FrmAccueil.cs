@@ -103,61 +103,132 @@ namespace JeuNim
                     // Si la l'utilisateur ne renseigne pas de numéro de partie
                     if (String.IsNullOrEmpty(txtNumero.Text))
                     {
-                        partie = context.Parties
+                        List<Partie> listPartie = context.Parties
                             .Where(p => p.EstCommence == false && p.EstPrive == false)
                             .OrderByDescending(p => p.DatePartie)
-                            .Single();
+                            .ToList();
+
+                        if(listPartie.Count == 0)
+                        {
+                            MessageBox.Show("Aucune partie publique disponible");
+                        }
+                        else
+                        {
+                            partie = context.Parties
+                                .Where(p => p.EstCommence == false && p.EstPrive == false)
+                                .OrderByDescending(p => p.DatePartie)
+                                .First();
+
+                            // On compte les participants de la partie
+                            int countParticipant = context.Participants
+                                .Where(p => p.IdPartie == partie.IdPartie)
+                                .Count();
+
+                            // S'il y en a plus de deux participants, on ne peut pas en ajouter d'autres !
+                            if (countParticipant > 2)
+                            {
+                                partie.EstCommence = true;
+                                context.SaveChanges();
+                                MessageBox.Show("Impossible de rejoindre cette partie !");
+                            }
+                            else
+                            {
+                                // On récupère le participant déjà créer
+                                Participant participantDejaCree = context.Participants
+                                    .Where(p => p.IdPartie == partie.IdPartie)
+                                    .Single();
+
+                                // On créer le nouveau participant
+                                bool commence;
+                                if (participantDejaCree.ACommence)
+                                {
+                                    commence = false;
+                                }
+                                else
+                                {
+                                    commence = true;
+                                }
+
+                                Participant participant = new Participant
+                                {
+                                    Aperdu = false,
+                                    ACommence = commence,
+                                    IdPartie = partie.IdPartie,
+                                    IdJoueur = joueurConnecte.IdJoueur,
+                                };
+                                context.Add(participant);
+                                context.SaveChanges();
+
+                                // On affiche le jeu
+                                FrmJeu frmJeu = new FrmJeu(joueurConnecte, participant, partie);
+                                frmJeu.Show();
+                                Close();
+                            }
+                        }
                     }
                     else
                     {
-                        partie = context.Parties
-                            .Where(p => p.EstCommence != true && p.Numero == txtNumero.Text.ToUpper())
-                            .Single();
+                        List<Partie> listPartie = context.Parties
+                            .Where(p => p.EstCommence == false && p.Numero == txtNumero.Text.ToUpper())
+                            .ToList();
+
+                        if (listPartie.Count == 0)
+                        {
+                            MessageBox.Show("Numéro de la partie non disponible");
+                        }
+                        else
+                        {
+                            partie = context.Parties
+                                .Where(p => p.EstCommence == false && p.Numero == txtNumero.Text.ToUpper())
+                                .Single();
+
+                            // On compte les participants de la partie
+                            int countParticipant = context.Participants
+                                .Where(p => p.IdPartie == partie.IdPartie)
+                                .Count();
+
+                            // S'il y en a plus de deux participants, on ne peut pas en ajouter d'autres !
+                            if (countParticipant > 2)
+                            {
+                                partie.EstCommence = true;
+                                context.SaveChanges();
+                                throw new Exception("Impossible de rejoindre cette partie !");
+                            }
+                            else
+                            {
+                                // On récupère le participant déjà créer
+                                Participant participantDejaCree = context.Participants
+                                    .Where(p => p.IdPartie == partie.IdPartie)
+                                    .Single();
+
+                                // On créer le nouveau participant
+                                bool commence;
+                                if (participantDejaCree.ACommence)
+                                {
+                                    commence = false;
+                                }
+                                else
+                                {
+                                    commence = true;
+                                }
+
+                                Participant participant = new Participant
+                                {
+                                    Aperdu = false,
+                                    ACommence = commence,
+                                    IdPartie = partie.IdPartie,
+                                    IdJoueur = joueurConnecte.IdJoueur,
+                                };
+                                context.Add(participant);
+                                context.SaveChanges();
+
+                                // On affiche le jeu
+                                FrmJeu frmJeu = new FrmJeu(joueurConnecte, participant, partie);
+                                frmJeu.Show();
+                                Close();
+                            }
+                        }
                     }
-
-                    // On compte les participants de la partie
-                    int countParticipant = context.Participants
-                        .Where(p => p.IdPartie == partie.IdPartie)
-                        .Count();
-
-                    // S'il y en a plus de deux participants, on ne peut pas en ajouter d'autres !
-                    if(countParticipant > 2)
-                    {
-                        partie.EstCommence = true;
-                        context.SaveChanges();
-                        throw new Exception("Impossible de rejoindre cette partie !");
-                    }
-
-                    // On récupère le participant déjà créer
-                    Participant participantDejaCree = context.Participants
-                        .Where(p => p.IdPartie == partie.IdPartie)
-                        .Single();
-
-                    // On créer le nouveau participant
-                    bool commence;
-                    if (participantDejaCree.ACommence)
-                    {
-                        commence = false;
-                    }
-                    else
-                    {
-                        commence = true;
-                    }
-
-                    Participant participant = new Participant
-                    {
-                        Aperdu = false,
-                        ACommence = commence,
-                        IdPartie = partie.IdPartie,
-                        IdJoueur = joueurConnecte.IdJoueur,
-                    };
-                    context.Add(participant);
-                    context.SaveChanges();
-
-                    // On affiche le jeu
-                    FrmJeu frmJeu = new FrmJeu(joueurConnecte, participant, partie);
-                    frmJeu.Show();
-                    Close();
                 }
             } 
             catch (Exception ex)
