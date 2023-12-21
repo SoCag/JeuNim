@@ -38,6 +38,10 @@ namespace JeuNim
             {
                 RafraichirDonnees();
             }
+            else
+            {
+                buttonQuitter.Enabled = true;
+            }
         }
 
         private void RafraichirDonnees()
@@ -88,7 +92,7 @@ namespace JeuNim
                                 // Alors je lui indique qu'il a gagné, et je ferme la partie quand il appuye sur OK
                                 DialogResult resultat = MessageBox.Show("Vous avez gagné !!!", "Bien joué !", MessageBoxButtons.OK);
 
-                                if (resultat == DialogResult.Yes)
+                                if (resultat == DialogResult.OK)
                                 {
                                     // Je le renvoie sur la page d'accueil
                                     FrmAccueil frmAccueil = new FrmAccueil(joueurConnecte);
@@ -105,7 +109,7 @@ namespace JeuNim
 
                                 DialogResult resultat = MessageBox.Show("Vous avez perdu.", "Dommage...", MessageBoxButtons.OK);
 
-                                if (resultat == DialogResult.Yes)
+                                if (resultat == DialogResult.OK)
                                 {
                                     // Je le renvoie sur la page d'accueil
                                     FrmAccueil frmAccueil = new FrmAccueil(joueurConnecte);
@@ -124,7 +128,7 @@ namespace JeuNim
                                 // Alors je lui indique qu'il a gagné, et je ferme la partie quand il appuye sur OK
                                 DialogResult resultat = MessageBox.Show("Votre adversaire a abandonné...", "Trop fort ! ;)", MessageBoxButtons.OK);
 
-                                if (resultat == DialogResult.Yes)
+                                if (resultat == DialogResult.OK)
                                 {
                                     // Je le renvoie sur la page d'accueil
                                     FrmAccueil frmAccueil = new FrmAccueil(joueurConnecte);
@@ -215,7 +219,7 @@ namespace JeuNim
             {
                 DialogResult resultat = MessageBox.Show("Êtes-vous sûr de vouloir abandonner ?\nVous perdrez la partie...", "Abandonner ?", MessageBoxButtons.YesNo);
 
-                if (resultat == DialogResult.Yes)
+                if (resultat == DialogResult.OK)
                 {
                     using (NesContext context = new NesContext())
                     {
