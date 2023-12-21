@@ -17,5 +17,7 @@ public partial class Partie
 
     public DateTime? DatePartie { get; set; }
 
+    public bool? EstPrive { get; set; }
+
     public virtual ICollection<Participant> Participants { get; set; } = new List<Participant>();
 }

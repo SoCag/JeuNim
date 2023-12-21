@@ -55,6 +55,10 @@ public partial class NesContext : DbContext
             entity.HasIndex(e => e.Login, "UQ__Joueur__7838F27284010409").IsUnique();
 
             entity.Property(e => e.IdJoueur).HasColumnName("idJoueur");
+            entity.Property(e => e.AdresseEmail)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("adresseEmail");
             entity.Property(e => e.Login)
                 .HasMaxLength(50)
                 .IsUnicode(false)
@@ -62,6 +66,14 @@ public partial class NesContext : DbContext
             entity.Property(e => e.MotDePasse)
                 .IsUnicode(false)
                 .HasColumnName("motDePasse");
+            entity.Property(e => e.Nom)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("nom");
+            entity.Property(e => e.Prenom)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("prenom");
         });
 
         modelBuilder.Entity<Participant>(entity =>
@@ -96,6 +108,9 @@ public partial class NesContext : DbContext
             entity.Property(e => e.IdPartie).HasColumnName("idPartie");
             entity.Property(e => e.DatePartie).HasColumnName("datePartie");
             entity.Property(e => e.EstCommence).HasColumnName("estCommence");
+            entity.Property(e => e.EstPrive)
+                .HasDefaultValue(false)
+                .HasColumnName("estPrive");
             entity.Property(e => e.EstTermine).HasColumnName("estTermine");
             entity.Property(e => e.NbBaton).HasColumnName("nbBaton");
             entity.Property(e => e.Numero)
