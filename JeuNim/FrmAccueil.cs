@@ -114,6 +114,19 @@ namespace JeuNim
                             .Single();
                     }
 
+                    // On compte les participants de la partie
+                    int countParticipant = context.Participants
+                        .Where(p => p.IdPartie == partie.IdPartie)
+                        .Count();
+
+                    // S'il y en a plus d'un, on ne peux pas en ajouter d'autres !
+                    if(countParticipant > 1)
+                    {
+                        partie.EstCommence = true;
+                        context.SaveChanges();
+                        throw new Exception("Impossible de rejoindre cette partie !");
+                    }
+
                     // On récupère le participant déjà créer
                     Participant participantDejaCree = context.Participants
                         .Where(p => p.IdPartie == partie.IdPartie)
@@ -148,7 +161,7 @@ namespace JeuNim
             } 
             catch (Exception ex)
             {
-                MessageBox.Show("Numero de partie inexistant :\n" + ex.Message);
+                MessageBox.Show("Erreur au chargement de la partie :\n" + ex.Message);
             }
         }
     }
