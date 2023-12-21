@@ -58,8 +58,7 @@ namespace JeuNim.Properties {
             set {
                 resourceCulture = value;
             }
-        }
-        
+        }        
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
