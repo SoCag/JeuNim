@@ -34,7 +34,7 @@ namespace JeuNim
                 using (NesContext db = new NesContext())
                 {
                     // Recherche l'utilisateur par adresse e-mail
-                    Joueur utilisateur = db.Joueurs.FirstOrDefault(j => j.AdresseEmail == email);
+                    Joueur utilisateur = db.Joueurs.FirstOrDefault(j => j.AdresseEmail.ToLower() == email.ToLower());
 
                     if (utilisateur != null)
                     {
@@ -42,19 +42,27 @@ namespace JeuNim
                         if (BCrypt.Net.BCrypt.Verify(motDePasse, utilisateur.MotDePasse))
                         {
                             // L'utilisateur est connecté avec succès
-                            MessageBox.Show("Connexion réussie !");
-                            // Effectuez ici les actions nécessaires après la connexion.
+                            FrmAccueil formAccueil = new FrmAccueil(utilisateur);
+                            formAccueil.Show();
+
+                            // Cacher le formulaire principal (de connexion)
+                            this.Hide();
                         }
                         else
                         {
                             MessageBox.Show("Mot de passe incorrect.");
                         }
+
                     }
                     else
                     {
                         MessageBox.Show("Adresse e-mail non trouvée.");
                     }
+
+                   
                 }
+
+                
             }
             catch (Exception ex)
             {
