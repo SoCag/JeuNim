@@ -39,6 +39,7 @@
             labelNomAdversaire = new Label();
             labelNumPar = new Label();
             labelNumeroPartie = new Label();
+            buttonQuitter = new Button();
             ((System.ComponentModel.ISupportInitialize)numericBatonARetirer).BeginInit();
             SuspendLayout();
             // 
@@ -60,6 +61,7 @@
             buttonEnleverBaton.TabIndex = 2;
             buttonEnleverBaton.Text = "Enlever";
             buttonEnleverBaton.UseVisualStyleBackColor = true;
+            buttonEnleverBaton.Click += buttonEnleverBaton_Click;
             // 
             // labelBatonsAEnlever
             // 
@@ -88,12 +90,13 @@
             // 
             // buttonAbandonner
             // 
-            buttonAbandonner.Location = new Point(339, 12);
+            buttonAbandonner.Location = new Point(339, 276);
             buttonAbandonner.Name = "buttonAbandonner";
             buttonAbandonner.Size = new Size(93, 32);
             buttonAbandonner.TabIndex = 5;
             buttonAbandonner.Text = "Abandonner";
             buttonAbandonner.UseVisualStyleBackColor = true;
+            buttonAbandonner.Click += buttonAbandonner_Click;
             // 
             // labelAdversaire
             // 
@@ -131,11 +134,23 @@
             labelNumeroPartie.TabIndex = 9;
             labelNumeroPartie.Text = "NPartie";
             // 
+            // buttonQuitter
+            // 
+            buttonQuitter.Location = new Point(339, 12);
+            buttonQuitter.Name = "buttonQuitter";
+            buttonQuitter.Size = new Size(93, 32);
+            buttonQuitter.TabIndex = 10;
+            buttonQuitter.Text = "Quitter";
+            buttonQuitter.UseVisualStyleBackColor = true;
+            buttonQuitter.Click += buttonQuitter_Click;
+            // 
             // FrmJeu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(444, 320);
+            ControlBox = false;
+            Controls.Add(buttonQuitter);
             Controls.Add(labelNumeroPartie);
             Controls.Add(labelNumPar);
             Controls.Add(labelNomAdversaire);
@@ -164,5 +179,6 @@
         private Label labelNomAdversaire;
         private Label labelNumPar;
         private Label labelNumeroPartie;
+        private Button buttonQuitter;
     }
 }

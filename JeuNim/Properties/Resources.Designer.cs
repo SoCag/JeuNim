@@ -58,6 +58,15 @@ namespace JeuNim.Properties {
             set {
                 resourceCulture = value;
             }
+        }        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Jeu_de_nim_2 {
+            get {
+                object obj = ResourceManager.GetObject("Jeu de nim 2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
         }
     }
 }
