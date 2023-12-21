@@ -35,7 +35,7 @@ namespace JeuNim
                         NbBaton = GenerateRandome(),
                         EstCommence = false,
                         EstTermine = false,
-                        EstPrive = checkPrivate.Checked,
+                        EstPrive = checkPrivate2.Checked,
                         DatePartie = DateTime.Now
                     };
                     nesContext.Parties.Add(partie);
