@@ -11,5 +11,11 @@ public partial class Joueur
 
     public string MotDePasse { get; set; } = null!;
 
+    public string? Nom { get; set; }
+
+    public string? Prenom { get; set; }
+
+    public string AdresseEmail { get; set; } = null!;
+
     public virtual ICollection<Participant> Participants { get; set; } = new List<Participant>();
 }
