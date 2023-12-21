@@ -23,33 +23,45 @@ namespace JeuNim
             utilisateurConnecte = pJoueurConnecte;
         }
 
-
         private void btnCreer_Click(object sender, EventArgs e)
         {
-            using (NesContext nesContext = new NesContext())
+            try
             {
-                Partie partie = new Partie
+                using (NesContext nesContext = new NesContext())
                 {
-                    Numero = GenerateRandom(),
-                    NbBaton = GenerateRandome(),
-                    EstCommence = false,
-                    EstTermine = false,
-                    DatePartie = Date(),
-                };
-                nesContext.Parties.Add(partie);
-                nesContext.SaveChanges();
+                    Partie partie = new Partie
+                    {
+                        Numero = GenerateRandom(),
+                        NbBaton = GenerateRandome(),
+                        EstCommence = false,
+                        EstTermine = false,
+                        DatePartie = DateTime.Now,
+                    };
+                    nesContext.Parties.Add(partie);
+                    nesContext.SaveChanges();
 
-                Participant participant = new Participant
-                {
-                    Aperdu = false,
-                    ACommence = GenerateAleat(),
-                    IdPartie = partie.IdPartie,
-                    IdJoueur = utilisateurConnecte.IdJoueur,
-                };
-                // a faire - PAGE DU JEU
-            };
+                    Participant participant = new Participant
+                    {
+                        Aperdu = false,
+                        ACommence = GenerateAleat(),
+                        IdPartie = partie.IdPartie,
+                        IdJoueur = utilisateurConnecte.IdJoueur,
+                    };
+                    nesContext.Participants.Add(participant);
+                    nesContext.SaveChanges();
 
+                    // On affiche le jeu
+                    FrmJeu frmJeu = new FrmJeu(participant, partie);
+                    frmJeu.Show();
+                    Close();
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Erreur à la création de la partie :\n" + ex.Message);
+            }
         }
+
         static string GenerateRandom()
         {
             Random random = new Random();
@@ -72,13 +84,6 @@ namespace JeuNim
             return randomNumber;
         }
 
-        static DateTime Date()
-        {
-            DateTime today = DateTime.Now;
-
-            return today;
-        }
-
         static bool GenerateAleat()
         {
             Random random = new Random();
@@ -93,65 +98,52 @@ namespace JeuNim
             {
                 using (NesContext context = new NesContext())
                 {
-                    /// elle est vide
+                    Partie partie;
+                    // Si la l'utilisateur ne renseigne pas de numéro de partie
                     if (String.IsNullOrEmpty(txtNumero.Text))
                     {
-                        Partie partie = context.Parties
+                        partie = context.Parties
                             .Where(p => p.EstCommence == false && p.EstPrive == false)
                             .OrderByDescending(p => p.DatePartie)
                             .Single();
-                        
-                        Participant participantDejaCree = context.Participants
-                            .Where(p => p.IdPartie == partie.IdPartie)
-                            .Single();
-
-                        bool commence;
-                        if (participantDejaCree.ACommence)
-                        {
-                            commence = false;
-                        }
-                        else
-                        {
-                            commence = true;
-                        }
-                        Participant participant = new Participant
-                        {
-                            Aperdu = false,
-                            ACommence = commence,
-                            IdPartie = partie.IdPartie,
-                            IdJoueur = utilisateurConnecte.IdJoueur,
-                        };
                     }
                     else
                     {
-                        Partie partie = context.Parties
+                        partie = context.Parties
                             .Where(p => p.EstCommence == false && p.Numero == txtNumero.Text)
                             .Single();
-
-                        Participant participantDejaCree = context.Participants
-                            .Where(p => p.IdPartie == partie.IdPartie)
-                            .Single();
-
-                        bool commence;
-                        if (participantDejaCree.ACommence)
-                        {
-                            commence = false;
-                        }
-                        else
-                        {
-                            commence = true;
-                        }
-                        Participant participant = new Participant
-                        {
-                            Aperdu = false,
-                            ACommence = commence,
-                            IdPartie = partie.IdPartie,
-                            IdJoueur = utilisateurConnecte.IdJoueur,
-                        };
                     }
-                    {
 
+                    // On récupère le participant déjà créer
+                    Participant participantDejaCree = context.Participants
+                        .Where(p => p.IdPartie == partie.IdPartie)
+                        .Single();
+
+                    // On créer le nouveau participant
+                    bool commence;
+                    if (participantDejaCree.ACommence)
+                    {
+                        commence = false;
+                    }
+                    else
+                    {
+                        commence = true;
+                    }
+
+                    Participant participant = new Participant
+                    {
+                        Aperdu = false,
+                        ACommence = commence,
+                        IdPartie = partie.IdPartie,
+                        IdJoueur = utilisateurConnecte.IdJoueur,
                     };
+                    context.Add(participant);
+                    context.SaveChanges();
+
+                    // On affiche le jeu
+                    FrmJeu frmJeu = new FrmJeu(participant, partie);
+                    frmJeu.Show();
+                    Close();
                 }
             } 
             catch (Exception ex)
