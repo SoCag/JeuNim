@@ -81,6 +81,8 @@ namespace JeuNim
                                 if (resultat == DialogResult.Yes)
                                 {
                                     // Je le renvoie sur la page d'accueil
+                                    FrmAccueil frmAccueil = new FrmAccueil(participantConnecte.IdJoueurNavigation);
+                                    frmAccueil.Show();
                                     Close();
                                 }
                             }
@@ -96,6 +98,8 @@ namespace JeuNim
                                 if (resultat == DialogResult.Yes)
                                 {
                                     // Je le renvoie sur la page d'accueil
+                                    FrmAccueil frmAccueil = new FrmAccueil(participantConnecte.IdJoueurNavigation);
+                                    frmAccueil.Show();
                                     Close();
                                 }
                             }
@@ -112,6 +116,8 @@ namespace JeuNim
                                 if (resultat == DialogResult.Yes)
                                 {
                                     // Je le renvoie sur la page d'accueil
+                                    FrmAccueil frmAccueil = new FrmAccueil(participantConnecte.IdJoueurNavigation);
+                                    frmAccueil.Show();
                                     Close();
                                 }
                             }
@@ -219,7 +225,9 @@ namespace JeuNim
                     context.SaveChanges();
                 }
 
-                // On redirige sur la page d'accueil
+                // Je le renvoie sur la page d'accueil
+                FrmAccueil frmAccueil = new FrmAccueil(participantConnecte.IdJoueurNavigation);
+                frmAccueil.Show();
                 Close();
             }
             catch (Exception ex)
