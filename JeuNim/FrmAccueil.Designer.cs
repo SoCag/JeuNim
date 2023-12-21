@@ -69,7 +69,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = Color.Transparent
+            label1.BackColor = Color.Transparent;
             label1.Font = new Font("Showcard Gothic", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
             label1.Location = new Point(915, 157);
             label1.Name = "label1";
