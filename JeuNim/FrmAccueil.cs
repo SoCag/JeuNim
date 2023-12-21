@@ -111,7 +111,7 @@ namespace JeuNim
                     else
                     {
                         partie = context.Parties
-                            .Where(p => p.EstCommence == false && p.Numero == txtNumero.Text.ToUpper())
+                            .Where(p => p.EstCommence != true && p.Numero == txtNumero.Text.ToUpper())
                             .Single();
                     }
 
@@ -120,8 +120,8 @@ namespace JeuNim
                         .Where(p => p.IdPartie == partie.IdPartie)
                         .Count();
 
-                    // S'il y en a plus d'un, on ne peux pas en ajouter d'autres !
-                    if(countParticipant > 1)
+                    // S'il y en a plus de deux participants, on ne peut pas en ajouter d'autres !
+                    if(countParticipant > 2)
                     {
                         partie.EstCommence = true;
                         context.SaveChanges();

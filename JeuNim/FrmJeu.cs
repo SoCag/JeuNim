@@ -172,10 +172,20 @@ namespace JeuNim
                         Where(c => c.IdParticipant == participantConnecte.IdParticipant || c.IdParticipant == participantAdversaire.IdParticipant).
                         OrderBy(c => c.Ordre).ToList();
 
+                    int ordre;
+                    if(listCoups.Count == 0)
+                    {
+                        ordre = 1;
+                    }
+                    else
+                    {
+                        ordre = listCoups.Last().Ordre + 1;
+                    }
+
                     Coup coupJoue = new Coup
                     {
-                        NbBaton = Convert.ToInt32(numericBatonARetirer),
-                        Ordre = (listCoups.Last().Ordre + 1)
+                        NbBaton = (int)numericBatonARetirer.Value,
+                        Ordre = ordre
                     };
                     context.Coups.Add(coupJoue);
                     context.SaveChanges();
