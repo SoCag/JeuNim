@@ -15,14 +15,16 @@ namespace JeuNim
     public partial class FrmJeu : Form
     {
         Partie partieEnCours;
+        Joueur joueurConnecte;
         Participant participantConnecte;
         Participant participantAdversaire;
         List<Coup> listCoups;
-        public FrmJeu(Participant pParticipantConnecte, Partie pPartie)
+        public FrmJeu(Joueur pJoueurConncte, Participant pParticipantConnecte, Partie pPartie)
         {
             InitializeComponent();
             partieEnCours = pPartie;
             participantConnecte = pParticipantConnecte;
+            joueurConnecte = pJoueurConncte;
             labelNumeroPartie.Text = partieEnCours.Numero.ToString();
             labelNombreBaton.Text = partieEnCours.NbBaton.ToString();
             RafraichirDonnees();
@@ -55,7 +57,7 @@ namespace JeuNim
                         context.SaveChanges();
 
                         // On renseigne l'adversaire
-                        labelNomAdversaire.Text = participantAdversaire.IdJoueurNavigation.Login;
+                        labelNomAdversaire.Text = joueurConnecte.Login;
 
                         // On récupère la liste des coups
                         listCoups = context.Coups.
@@ -83,7 +85,7 @@ namespace JeuNim
                                 if (resultat == DialogResult.Yes)
                                 {
                                     // Je le renvoie sur la page d'accueil
-                                    FrmAccueil frmAccueil = new FrmAccueil(participantConnecte.IdJoueurNavigation);
+                                    FrmAccueil frmAccueil = new FrmAccueil(joueurConnecte);
                                     frmAccueil.Show();
                                     Close();
                                 }
@@ -100,7 +102,7 @@ namespace JeuNim
                                 if (resultat == DialogResult.Yes)
                                 {
                                     // Je le renvoie sur la page d'accueil
-                                    FrmAccueil frmAccueil = new FrmAccueil(participantConnecte.IdJoueurNavigation);
+                                    FrmAccueil frmAccueil = new FrmAccueil(joueurConnecte);
                                     frmAccueil.Show();
                                     Close();
                                 }
@@ -118,7 +120,7 @@ namespace JeuNim
                                 if (resultat == DialogResult.Yes)
                                 {
                                     // Je le renvoie sur la page d'accueil
-                                    FrmAccueil frmAccueil = new FrmAccueil(participantConnecte.IdJoueurNavigation);
+                                    FrmAccueil frmAccueil = new FrmAccueil(joueurConnecte);
                                     frmAccueil.Show();
                                     Close();
                                 }
@@ -228,7 +230,7 @@ namespace JeuNim
                 }
 
                 // Je le renvoie sur la page d'accueil
-                FrmAccueil frmAccueil = new FrmAccueil(participantConnecte.IdJoueurNavigation);
+                FrmAccueil frmAccueil = new FrmAccueil(joueurConnecte);
                 frmAccueil.Show();
                 Close();
             }
