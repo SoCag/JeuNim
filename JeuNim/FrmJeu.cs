@@ -62,7 +62,7 @@ namespace JeuNim
                         buttonQuitter.Enabled = false;
 
                         // La partie commence : On déclare la partie comme "Commencée" !
-                        partieEnCours.EstCommence = true;
+                        partieEnCours.EstCommence = false;
                         context.SaveChanges();
 
                         // On renseigne l'adversaire
@@ -219,7 +219,7 @@ namespace JeuNim
             {
                 DialogResult resultat = MessageBox.Show("Êtes-vous sûr de vouloir abandonner ?\nVous perdrez la partie...", "Abandonner ?", MessageBoxButtons.YesNo);
 
-                if (resultat == DialogResult.OK)
+                if (resultat == DialogResult.Yes)
                 {
                     using (NesContext context = new NesContext())
                     {
