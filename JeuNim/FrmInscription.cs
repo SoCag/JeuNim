@@ -94,6 +94,13 @@ namespace JeuNim
                     db.SaveChanges();
 
                     MessageBox.Show("Inscription réussie !");
+
+                    FrmAccueil formAccueil = new FrmAccueil(NouveauJoueur);
+
+                    formAccueil.ShowDialog();
+
+                    //ferme ce formulaire
+                    Close();
                 }
 
             }

@@ -54,7 +54,16 @@ namespace JeuNim
                     {
                         MessageBox.Show("Adresse e-mail non trouvée.");
                     }
+
+                    FrmAccueil formAccueil =  new FrmAccueil(utilisateur);
+                    formAccueil.ShowDialog();
+
+                    // Cacher le formulaire principal (de connexion)
+                    this.Hide();
+
                 }
+
+                
             }
             catch (Exception ex)
             {
