@@ -52,7 +52,7 @@ namespace JeuNim
                     nesContext.SaveChanges();
 
                     // On affiche le jeu
-                    FrmJeu frmJeu = new FrmJeu(participant, partie);
+                    FrmJeu frmJeu = new FrmJeu(joueurConnecte, participant, partie);
                     frmJeu.Show();
                     Close();
                 }
@@ -155,7 +155,7 @@ namespace JeuNim
                     context.SaveChanges();
 
                     // On affiche le jeu
-                    FrmJeu frmJeu = new FrmJeu(participant, partie);
+                    FrmJeu frmJeu = new FrmJeu(joueurConnecte, participant, partie);
                     frmJeu.Show();
                     Close();
                 }
