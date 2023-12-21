@@ -111,7 +111,7 @@ namespace JeuNim
                     else
                     {
                         partie = context.Parties
-                            .Where(p => p.EstCommence == false && p.Numero == txtNumero.Text)
+                            .Where(p => p.EstCommence == false && p.Numero == txtNumero.Text.ToUpper())
                             .Single();
                     }
 
