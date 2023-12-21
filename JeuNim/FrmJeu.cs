@@ -28,6 +28,7 @@ namespace JeuNim
             labelNumeroPartie.Text = partieEnCours.Numero.ToString();
             labelNombreBaton.Text = partieEnCours.NbBaton.ToString();
             RafraichirDonnees();
+            timerRefreshDonnee.Start();
         }
 
         private void timerRefreshDonnee_Tick(object sender, EventArgs e)
@@ -48,7 +49,7 @@ namespace JeuNim
                     {
                         // Je récupère le participant adversaire
                         participantAdversaire = context.Participants.Where(p => p.IdPartie == partieEnCours.IdPartie && p.IdParticipant != participantConnecte.IdParticipant).Single();
-
+                        Joueur joueurAdversaire = context.Joueurs.Where(j => j.IdJoueur == participantAdversaire.IdJoueur).Single();
                         // On empêche le participant connecté de quitter
                         buttonQuitter.Enabled = false;
 
@@ -57,7 +58,7 @@ namespace JeuNim
                         context.SaveChanges();
 
                         // On renseigne l'adversaire
-                        labelNomAdversaire.Text = joueurConnecte.Login;
+                        labelNomAdversaire.Text = joueurAdversaire.Login;
 
                         // On récupère la liste des coups
                         listCoups = context.Coups.
@@ -206,7 +207,9 @@ namespace JeuNim
                         context.SaveChanges();
                     }
 
-                    // On redirige sur la page d'accueil
+                    // Je le renvoie sur la page d'accueil
+                    FrmAccueil frmAccueil = new FrmAccueil(joueurConnecte);
+                    frmAccueil.Show();
                     Close();
                 }
             }
