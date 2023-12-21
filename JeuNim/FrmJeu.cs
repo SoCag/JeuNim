@@ -185,7 +185,8 @@ namespace JeuNim
                     Coup coupJoue = new Coup
                     {
                         NbBaton = (int)numericBatonARetirer.Value,
-                        Ordre = ordre
+                        Ordre = ordre,
+                        IdParticipant = participantConnecte.IdParticipant
                     };
                     context.Coups.Add(coupJoue);
                     context.SaveChanges();
