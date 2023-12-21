@@ -97,7 +97,7 @@ namespace JeuNim
 
                     FrmAccueil formAccueil = new FrmAccueil(NouveauJoueur);
 
-                    formAccueil.ShowDialog();
+                    formAccueil.Show();
 
                     //ferme ce formulaire
                     Close();
