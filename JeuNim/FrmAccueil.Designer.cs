@@ -39,8 +39,7 @@
             // 
             btnCreer.BackColor = Color.FromArgb(128, 64, 0);
             btnCreer.ForeColor = Color.White;
-            btnCreer.Location = new Point(231, 72);
-            btnCreer.Margin = new Padding(3, 2, 3, 2);
+            btnCreer.Location = new Point(480, 173);
             btnCreer.Name = "btnCreer";
             btnCreer.Size = new Size(233, 29);
             btnCreer.TabIndex = 0;
@@ -52,8 +51,7 @@
             // 
             btnJoin.BackColor = Color.FromArgb(128, 64, 0);
             btnJoin.ForeColor = SystemColors.ButtonFace;
-            btnJoin.Location = new Point(231, 160);
-            btnJoin.Margin = new Padding(3, 2, 3, 2);
+            btnJoin.Location = new Point(480, 245);
             btnJoin.Name = "btnJoin";
             btnJoin.Size = new Size(233, 32);
             btnJoin.TabIndex = 1;
@@ -63,8 +61,7 @@
             // 
             // txtNumero
             // 
-            txtNumero.Location = new Point(294, 133);
-            txtNumero.Margin = new Padding(3, 2, 3, 2);
+            txtNumero.Location = new Point(928, 185);
             txtNumero.Name = "txtNumero";
             txtNumero.Size = new Size(170, 23);
             txtNumero.TabIndex = 2;
@@ -72,12 +69,13 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Location = new Point(231, 136);
+            label1.BackColor = Color.Transparent
+            label1.Font = new Font("Showcard Gothic", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label1.Location = new Point(915, 157);
             label1.Name = "label1";
-            label1.Size = new Size(57, 15);
+            label1.Size = new Size(158, 18);
             label1.TabIndex = 3;
-            label1.Text = "Numéro :";
+            label1.Text = "Numéro de partie :";
             // 
             // checkPrivate
             // 
@@ -94,8 +92,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.Jeu_de_nim_2;
-            ClientSize = new Size(700, 338);
-            Controls.Add(checkPrivate);
+            ClientSize = new Size(1166, 604);
             Controls.Add(label1);
             Controls.Add(txtNumero);
             Controls.Add(btnJoin);
