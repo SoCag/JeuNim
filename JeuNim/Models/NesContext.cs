@@ -84,7 +84,7 @@ public partial class NesContext : DbContext
 
             entity.Property(e => e.IdParticipant).HasColumnName("idParticipant");
             entity.Property(e => e.ACommence).HasColumnName("aCommence");
-            entity.Property(e => e.AGagne).HasColumnName("aGagne");
+            entity.Property(e => e.Aperdu).HasColumnName("APerdu");
             entity.Property(e => e.IdJoueur).HasColumnName("idJoueur");
             entity.Property(e => e.IdPartie).HasColumnName("idPartie");
 
